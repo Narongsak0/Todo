@@ -13,9 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
-Route::get('/login', 'HomeController@login');
-Route::get('/create', 'HomeController@create');
+Route::get('/', 'HomeController@index')->middleware("auth");
+Route::get('/login', 'HomeController@login')->middleware("auth");
+Route::get('/create', 'HomeController@create')->middleware("auth");
 
-Route::post('/store', "HomeController@store");
-Route::get('/delete/{id}', "HomeController@delete");
+Route::post('/store', "HomeController@store")->middleware("auth");
+Route::get('/delete/{id}', "HomeController@delete")->middleware("auth");
+
+Auth::routes();
+
+Route::get("/logout", function () {
+    Auth::logout();
+    return redirect("/login");
+
+});
+
+
