@@ -11,18 +11,11 @@ class HomeController extends Controller
 
     }
 
-    public function show(){
+    public function about(){
+        return view('about');
     }
 
-    public function create(){
-    }
-
-    public function store(){
-    }
-
-    public function update(){
-    }
-
-    public function delete(){
+    public function contact(){
+        return view('contact');
     }
 }
